@@ -1,4 +1,4 @@
-package SimpleWebServer;
+package SimpleWebServer.Context;
 
 import java.util.concurrent.ConcurrentHashMap;
 

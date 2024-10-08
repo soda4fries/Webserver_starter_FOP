@@ -1,6 +1,6 @@
 package SimpleWebServer;// WebServer.java
-import SimpleWebServer.Request;
-import SimpleWebServer.Response;
+import SimpleWebServer.Context.ContextHolder;
+import SimpleWebServer.TempleteEngine.TemplateEngine;
 
 import java.io.*;
 import java.net.*;
@@ -8,7 +8,7 @@ import java.util.*;
 
 public class WebServer {
     private int port;
-    private Map<String, RouteHandler> routes;
+    private Map<String, Route> routes;
     private TemplateEngine templateEngine;
     private ContextHolder contextHolder;
     private Map<String, String> sessions;
@@ -21,7 +21,7 @@ public class WebServer {
         this.sessions = new HashMap<>();
     }
 
-    public void addRoute(String path, RouteHandler handler) {
+    public void addRoute(String path, Route handler) {
         routes.put(path, handler);
     }
 
@@ -48,7 +48,7 @@ public class WebServer {
 
             String sessionId = getSessionId(request);
 
-            RouteHandler handler = routes.get(request.getPath());
+            Route handler = routes.get(request.getPath());
             if (handler != null) {
                 Response response = handler.handle(request, contextHolder, sessionId);
                 sendResponse(out, response, sessionId);

@@ -1,4 +1,4 @@
-package SimpleWebServer;
+package SimpleWebServer.Context;
 
 
 public interface ContextHolder {
