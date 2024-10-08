@@ -7,6 +7,8 @@ import SimpleWebServer.Context.ContextHolder;
 import SimpleWebServer.TempleteEngine.TemplateEngine;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class EmailApplication {
@@ -27,7 +29,9 @@ public class EmailApplication {
                 String body = templateEngine.render("index.html", templateContext);
                 return new Response(200, "OK", body);
             } else if (request.getMethod().equals("POST")) {
-                String email = request.getBody().split("=")[1];
+                String encodedEmail = request.getBody().split("=")[1];
+                String email = URLDecoder.decode(encodedEmail, StandardCharsets.UTF_8);
+                contextHolder_passed.set("email_" + sessionId, email);
                 contextHolder_passed.set("email_" + sessionId, email);
                 List<String> allEmails = (List<String>) contextHolder_passed.get("allEmails");
                 if (!allEmails.contains(email)) {
