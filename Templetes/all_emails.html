@@ -1,0 +1,18 @@
+<!-- templates/all_emails.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posted Emails</title>
+</head>
+<body>
+    <h1>All Posted Emails</h1>
+    <ul>
+        {{#each emails}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
