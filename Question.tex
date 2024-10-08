@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\begin{document}
+
+\section{Introduction}
+
+Hello and welcome to University Malaya! You're at the beginning of an exciting Computer Science journey. And must remember, the self-esteem of a CS grad is directly proportionally to how well they can code (even if it's not the main point of the degree xD). Also, a large portion of you will end up working on user-facing servers and websites. So why not make something that seems complex and blackbox to improve your coding skills and also learn about the web more deeply. To give a overview we will be developing a webserver that does server side rendering with templetes, (similar to PHP, django, etc). 
+
+Whether you're coming in with prerequisite knowledge or not, remember that the best programmers are always learning. This assignment is designed to challenge you and help you grow. It'll be a bit harder than most projects, so any prerequisites like having developed a website before or being familiar with concepts such as routing, templates, etc. in websites, will be super helpful but not required if you can learn fast. These aren't just Java skills, mind you - any aspiring \href{https://www.simplethread.com/the-10x-programmer-myth/}{10x dev (click me)} in front-end, backend, or whatever role will eventually need to learn these. 
+
+We've provided you with a starter template to give you a head start and do some heavy lifting as some of you are still beginner. I believe it'll allow you to play with it, make it more lucid, and have a simple baseline to work on. Your task? Extend and improve upon it, creating a project that any Special UM student (each of 700 of you xD) would be proud of. 
+
+Scared? This project won't be that tedious, so you won't have to write billions of lines to get JavaFx to work (ask your seniors about that nightmare). But the code you do write needs to be well thought out. It's important because while ChatGPT and other coding assistants can handle the heavy repetitive coding, they can't do the planning for you. So it's okay to take a long time to understand and plan and then write just a few lines that get the job done in a couple of evenings. Focus on improving only few things, but take you time to understand what is happening. 
+
+Check out how much functionality is packed into the simple, small codebase provided in the GitHub repo. You'll be surprised! So you can also make cool things if you implement them nicely. Read the comments in the code to understand how they work.
+
+\section{Prerequisites and Implemented Features}
+The starter code implements a basic HTTP server with the following features:
+\begin{itemize}
+    \item Basic request parsing and handing a POST and GET
+    \item Simple routing system
+    \item Response generation
+    \item A rudimentary templating system
+    \item Simple context and state management (by connection/session)
+\end{itemize}
+
+\textbf{It can be used as such:}
+\begin{itemize}
+    \item Git Clone from \href{https://github.com/soda4fries/Webserver_starter_FOP.git}{https://github.com/soda4fries/Webserver\_starter\_FOP.git}
+    \item Open the project in your favourite IDE (Netbeans or IntelliJ is usually good) 
+    \item I created a simple application that uses the webserver to create a simple website. To run the application goto /src/Application/ and run the file. Look at the configuration and you should see it running on port 8080, so visit in your browser localhost:8080/
+    
+\end{itemize}
+
+Now what happened? As you can see you are running a no frills basic (but dynamic mind you) web-server that even has basic session management (set the email and open from incognito and another tab. see the difference). This is more advanced than the first HTTP server that started the internet xD. We have only used basic sockets and utilities provided in java collections. 
+
+\section{Question (12 marks)}
+Your task is to improve different aspects of the web server. It is very open-ended and you can develop a lot based on your skills and how much you understand and learn. If you look at the code they are implemented as interface and this means that for different modules you can try different techniques and implementation and improve them modularly. so issues will be isolated and you can develop choose the part of the server you want to improve and develop them. They will also expose why OOP and code structure is important otherwise the complexity will be hard to manage.Read the code comment to understand what is being asked to improved
+
+\subsection{Basic Features (8 marks)}
+Implement the following features:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Request Parsing: Enhance the request parsing to handle query parameters in URLs. For example, extract key-value pairs from a URL like "/page?name=John\&age=25". (2 marks)
+    
+    \textcolor{gray}{Hint: Look for the "?" character in the URL and split the string that follows into key-value pairs.}
+
+    \item Static File Serving: Implement a feature to serve static files (like CSS or JavaScript) from a specific directory. (2 marks)
+    
+    \textcolor{gray}{Hint: Check if the requested path corresponds to a file in your static directory. If it does, read and send the file content instead of processing it as a dynamic route.}
+
+    \item Deploy a website you created with you own framework on the internet. It can be a basic very basic vlogs with your pictures and introduction and some interaction. It must be accessible with a domain name (The marks is for creating a example application) (2 marks) 
+    \textcolor{gray}{Hint: You can get free hosting by using Azure student credits and use one of their subdomains.}
+
+    \item More Templating Feature: Implement block substitution in HTML templates. Replace placeholders like \texttt{\{\{Block x.html\}\}} with their corresponding templates. This allows the web developer to have a basic layout and modularize functionality.(2 marks)
+    
+    \textcolor{gray}{Hint: Understand the code-base and see how is the rendering actually accomplished. This is the hardest part most likely and others should be much simpler once you start}
+\end{enumerate}
+
+\subsection{Advanced Features (4 marks)}
+Choose two of the following advanced features to implement with (2 marks each). You're encouraged to be creative and expand upon these ideas. The basic starter can actually do some of them in the application side (if you have a hammer everything is a nail), but you are being asked to move them to Web server and provide a pleasant API for the application developers to use. This is done by creating more advanced implementation of the interfaces already provided and allow Applications to import them (you may modify the interface also if think it will be better.) 
+
+\begin{enumerate}[label=(\alph*)]
+    \item Improved Code base and API: While this may seem abstract but if you can improve how any part of the process is handled more modularly or using better design patterns. For example: Requests is be handled using a design pattern called filter chains in Spring. You can implement this, The API can be improved on how GET and POST is defined. it can be moved more into the webserver rather on the application side, etc.  The best way to do this is to see how they are implemented in other Webframeworks at a high level and use their lessions to improve your own code.
+    \item Session Management: Implement a Session management system using cookies. This should allow the server to remember information about users across multiple requests trough their account not session-id. This is a more advanced version where they will only access their own data (It is already done in the code but you are required to make it transparent with better API with authentication support). A example use of this is they can retrive their username, email-address,etc using a simple method from the Session. Also you can implement banning certain routes (/admin) for normal users. A security filter maybe useful.
+    \textcolor{gray}{Hint: Look for the "Authorization" header in the request. The credentials are encoded in Base64, which you'll need to decode and check against predefined values.}
+    \item RESTful Routing: Extend the routing system to support different HTTP methods (GET, POST, PUT, DELETE) for the same route, implementing a basic RESTful API. (GET PUT example is implemented in the index.html but you need to make the appropiate handler call transparent instead of inside the on-handle method) 
+    \item Request Logging and Analytics: Create a logging system that records incoming requests, including details like timestamp, IP address, and requested resource. Implement a simple analytics page that displays this data.
+    \item MIME Type Handling: Implement proper MIME type detection and handling for various file types when serving static files. Ensure the server sends the correct Content-Type header.
+    \item More templeting features. Look at other templating engines and server side renderers and what they have. copy their features.
+    \item Implement compression and TLS. This will be transparent to the application code, only modify the socket.
+    \item Integrate database. Choose a database and improve the context handler class to be persistent since all your data are lost when you kill the server. Implement a type of context handler than user will configure according to their needs.
+    \item anything you want. if you are proud of it, msg me to beg for full marks xD
+\end{enumerate}
+
+For the advanced feature, explain your approach, any challenges you faced, and how your implementation could be further improved or expanded.
+
+You will demonstrate (show-off) the features by actually making a website in the application and templete that demonstrates your feature.
+
+
+\section{But How Does the Starter Implementation Work?} \begin{enumerate} 
+    \item Whenever you make a request from your browser, it establishes a connection with the webserver. In the project's webserver class, you can see that it listens on a port and creates a new thread for each connection to process the input. 
+    \item After the connection is established, the server reads the incoming stream. Since HTTP is a plaintext protocol, we use a reader (which you will learn about in File I/O) to read and parse the request. 
+    \item We also extract header information. The browser assists by sending required headers and any cookies previously set by the server. 
+    \item Crucially, we parse the URL and check if it matches any of our predefined routes. If a match is found, we use the corresponding handler to process the request, passing along the body and necessary information. On your PC, when you request 
+    \texttt{c://hello.txt}, it is sent to your application as a stream. Similarly, our webserver examines the URL to determine what needs to be sent. However, this data is generated on the fly based on the route, rather than being read from disk. 
+    \item The handler then loads the webpage template from \texttt{Template\_dir}, which is configured when initializing the webserver class in the application. It processes the template and returns the response, adding any required headers. Anything enclosed in \{\{\}\} in \texttt{index.html} and other templates are directives that the template renderer will process accordingly. These can be simple substitutions, as shown in the example, or more advanced. The substitution is actually quite powerful, supporting features like \#FOREACH loops, giving you an idea of what's possible.
+
+\end{enumerate}
+
+The files under SimpleWebServer will be where you will develop the webserver. The Application and Templetes folder is just a example website, similar to how anyone can use PHP, Spring to make their own website. So be thoughtful of your API so that it is general case and not just for building your website.
+
+\section{Additional Guidance}
+As you work on this assignment, here are some concepts you may need to learn or refresh and some reason why i am mentioning them:
+\begin{itemize}
+    \item URL parsing and query string manipulation, headers: This will basically determine how your request will be handled when it hits your server. For example, as you can see we have \textbf{index.html} and another \textbf{all\_email.html}. When you make a request, they are routed to different functions based on your URL. \textbf{localhost:8080/} or \texttt{/} is directed to process \texttt{index.html} in the add route function. You can also imagine if headers do not have auth cookies, they can be sent to the login page instead of receiving the requested resource.
+    \item Concept of streams (file streams, network (TCP/IP) streams, etc.) : This are important concepts that you will always need to build any realworld application.
+    \item File I/O for serving static files : instead of handling with a templete renderer you may make a magic /static/xxx.pdf route that will serve static files directly. Beware of directory traversal attack. if they request /../xxx.pdf they can access file that are outside the folder if not protected against.  
+    \item Base64 encoding/decoding (HTTP is a text-based protocol) if you are using HTTP to serve images and other resources binary data is usually converted to this. If you implement mime types and other function you can make it efficient since base64 encoding usually inflates package by 33 percent
+    \item Regular expressions for advanced string manipulation: if you choose to improve the templating part of your webserver. If you are interesting you can read about parsers, templeting engines, etc. if you choose to improve this part focus less on other part since it is more complex but satisfing. Also regular expression cannot process nested expression (learn more why, hardcore automata theory. Google to start the rabbit hole : Parsing HTML using Regex) so you may need to use other tools. 
+    \item HTTP headers and their meanings : As mentioned above. Also see what are the conventions, since browsers handle some part of this. If you find this interesting read (RFCs for example \href{https://datatracker.ietf.org/doc/html/rfc2818}{HTTPS RFC})
+    \item Cookies and session management: Servers need to store this to know how much information the user can access. Understand authentication, authorization and how they are different. I have seperated the context class to make it more apparant. so make it more advanced to allow more advanced security features. Manipulate how much data is provided by checking the headers and params etc.
+\end{itemize}
+
+
+Tips for success:
+\begin{itemize}
+    \item \textbf{This is for FOP so you should not care about runtime complexity or performance or appropiate data structure or algorithms, rather use clever code to solve the problem and try to get comfortable with libraries and abstractions. Some OOP concepts such as polymorphims, interfaces, etc have already been used and see how they are making the coding much more modular. So try to use them}
+    \item Ensuring your code is thread-safe. While not required for a basic implementation, consider using concurrent data structures from the \texttt{java.util.concurrent} package. Think about why these might be necessary in a web server environment. Even if you don't fully understand how they work internally, using them can make your server more robust when handling multiple simultaneous requests. Search the terms (Thread-safety) and try to analyse which data can be accessed from different threads. No need to optimize them rather use blocking things like synchronized methods or non blocking concurrent collection to prevent bugs. Focus on why you are using them not how they work. Most collection datastructure tools have a thread-safe counterpart (Java is actually very praised for the good implementation of this) . 
+    \item Balancing between code simplicity and feature richness. Remember you cannot do everything but you can do a lot. So choose which part you want to improve judiciously
+    \item Break down complex tasks into smaller, manageable pieces, \textbf{get comfortable with the debugger}
+    \item Test your code frequently, especially after implementing each feature
+    \item Use version control (like Git) to track your changes and experiment safely. Fork my Repo
+    \item Don't hesitate to research and learn new Java libraries that might help you. 
+    \item Learn about a webframework if possible. I was inpired by watching vidoes in this channel :\href{https://www.youtube.com/@SpringIOConference}{Youtube - Spring IO}
+\end{itemize}
+
+Remember, the goal is not just to complete the assignment, but to learn and grow as a programmer. Good luck, and enjoy the process of building your web server!
+
+\section*{Contact Me}
+If you are confused or need any help:
+\begin{itemize}
+    \item Email: \href{mailto:youremail@example.com}{rahmanmahinur@gmail.com}
+    \item Phone: +60123563426 (Whatsapp)
+\end{itemize}
+
+\end{document}

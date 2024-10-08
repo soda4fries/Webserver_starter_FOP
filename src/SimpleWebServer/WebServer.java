@@ -39,6 +39,7 @@ public class WebServer {
     public void addRoute(String path, Route handler) {
         routes.put(path, handler);
     }
+
     // This method starts the server and listens for incoming client requests
     // for each client request, it creates a new thread to handle the request
     // this can be made more advanced by using a thread pool to manage the threads
