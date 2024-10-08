@@ -20,6 +20,7 @@ class AllEmailRoute implements Route {
 
     @Override
     public Response handle(Request request, ContextHolder contextHolder, String sessionId) throws IOException {
+
         if (request.getMethod().equals("GET")) {
             Map<String, Object> templateContext = new HashMap<>();
             templateContext.put("emails", contextHolder.get("allEmails"));

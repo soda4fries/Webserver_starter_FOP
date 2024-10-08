@@ -3,6 +3,14 @@ package SimpleWebServer;
 import java.util.HashMap;
 import java.util.Map;
 
+
+// Response class to store the response data
+// This is used to send the response back to the client
+// Wraps the response data like status code, status message, body, and headers
+// This can be used to send the response back to the client
+// The headers can be used to send additional data like content type, content length, etc.
+// They determine how the client should interpret the response
+// and can change browser behavior
 public class Response {
     private int statusCode;
     private String statusMessage;

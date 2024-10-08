@@ -21,6 +21,8 @@ public class EmailApplication {
         contextHolder.set("allEmails", new ArrayList<String>());
 
         // Root route handler as lambda expression
+        // This can be implemented as a concrete class as well like AllEmailRoute
+        // for very advanced improvements can try to make it use annotation but that will be a lot of work
         server.addRoute("/", (request, contextHolder_passed, sessionId) -> {
             if (request.getMethod().equals("GET")) {
                 String email = (String) contextHolder_passed.get("email_" + sessionId);

@@ -2,7 +2,11 @@ package SimpleWebServer;
 
 import java.util.Map;
 
-
+//This is used to parse the request data
+//The parser can be improped then this class can be updated to handle the new parser
+//This can be used to parse the request data and pass it to the route handler
+//or other components to handle the request
+// can be converted to record in Java 16
 public class Request {
     private String method;
     private String path;
